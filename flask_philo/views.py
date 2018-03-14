@@ -23,14 +23,17 @@ class BaseView(MethodView):
         super(BaseView, self).__init__(*args, **kwargs)
 
     def json_response(self, status=200, data={}, headers={}):
-        import ipdb; ipdb.set_trace()
         mimetype = 'application/json'
+
+        header_dict = {}
+        for k,v in headers.items():
+            header_dict[k] = v
 
         return Response(
             json.dumps(data),
             status=status,
             mimetype=mimetype,
-            headers=headers)
+            headers=header_dict)
 
     def render_template(self, template_name, engine_name='DEFAULT', **values):
         if not hasattr(self, 'jinja2_template_manager'):
