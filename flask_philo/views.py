@@ -23,6 +23,7 @@ class BaseView(MethodView):
         super(BaseView, self).__init__(*args, **kwargs)
 
     def json_response(self, status=200, data={}, headers={}):
+        import ipdb; ipdb.set_trace()
         mimetype = 'application/json'
 
         return Response(
